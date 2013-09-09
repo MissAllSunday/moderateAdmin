@@ -15,3 +15,13 @@ function mApermissions(&$permissionGroups, &$permissionList)
 {
 	$permissionList['board']['moderateAdmin'] = array(false, 'general_board', 'moderate');
 }
+
+function isAdmin($userID)
+{
+	global $smcfunc, $modSettings;
+
+	$queryWhere = 'id_group = {int:userID}';
+
+	if (empty($modSettings['mA_onlySuperAdmin']))
+		$queryWhere .= 'OR ';
+}
