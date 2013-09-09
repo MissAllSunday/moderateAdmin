@@ -13,10 +13,5 @@ if (!defined('SMF'))
 
 function mApermissions(&$permissionGroups, &$permissionList)
 {
-	$permissionGroups['membergroup']['simple'] = array('mA_per_simple');
-	$permissionGroups['membergroup']['classic'] = array('mA_per_classic');
-	$permissionList['membergroup']['moderateAdmin'] = array(
-		false,
-		'mA_per_classic',
-		'mA_per_simple');
+	$permissionList['board']['moderateAdmin'] = array(false, 'general_board', 'moderate');
 }
