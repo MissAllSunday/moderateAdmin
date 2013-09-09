@@ -8,5 +8,6 @@
  * @license http://www.mozilla.org/MPL/ MPL 2.0
  */
 
-if (!defined('SMF'))
-	die('No direct access...');
+global $txt;
+
+$txt['mA_main'] = 'moderate admin';
