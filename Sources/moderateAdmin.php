@@ -38,21 +38,41 @@ function mA_settings(&$config_vars)
 
 function isAdmin($userID)
 {
-	global $smcfunc, $modSettings;
+	global $smcfunc, $modSettings, $user_info;
 
 	$queryWhere = '';
+	$idGroup = 1;
+	$admins = array();
 
 	if (!empty($modSettings['mA_adminOptions']))
 		switch ($modSettings['mA_adminOptions'])
 		{
+			// Been single makes things soo much easier :P
 			case 'single':
-				$queryWhere .= '';
+				return $user_info['id'] == $userID;
 				break;
 			case'primary':
-				$queryWhere .= '';
+				$queryWhere .= 'id_group = {int:idGroup}';
 				break;
 			case 'all':
-				$queryWhere .= '';
+				$queryWhere .= 'id_group = {int:idGroup} OR FIND_IN_SET({int:idGroup}, additional_groups)';
 				break;
 		}
+
+	// Get all possible admins
+	$result = $this->_smcFunc['db_query']('', '
+		SELECT id_member
+		FROM {db_prefix}members
+		WHERE '. ($queryWhere),
+		array(
+			'idGroup' => $idGroup
+		)
+	);
+
+	while ($row = $smcFunc['db_fetch_assoc']($result))
+		$Admins[] = $row['id_member'];
+
+	$smcFunc['db_free_result']($result);
+
+	return in_array($userID, $admins);
 }
