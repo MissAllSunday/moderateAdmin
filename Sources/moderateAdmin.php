@@ -11,9 +11,28 @@
 if (!defined('SMF'))
 	die('No direct access...');
 
-function mApermissions(&$permissionGroups, &$permissionList)
+function mA_permissions(&$permissionGroups, &$permissionList)
 {
 	$permissionList['board']['moderateAdmin'] = array(false, 'general_board', 'moderate');
+}
+
+function mA_settings(&$config_vars)
+{
+	global $txt;
+
+	loadLanguage('moderateAdmin');
+
+	$config_vars[] = $txt['mA_main'];
+	array( 'select', 'mA_adminOptions',
+			array(
+				'single' => $txt['mA_singleAdmin'],
+				'primary' => $txt['mA_primaryAdmin'],
+				'all' => $txt['mA_allAdmins'],
+			),
+			'subtext' => $txt['mA_adminOptions_sub']
+		),
+	$config_vars[] = '';
+
 }
 
 function isAdmin($userID)
