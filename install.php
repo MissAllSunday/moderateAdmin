@@ -15,7 +15,7 @@ elseif (!defined('SMF'))
 	exit('<b>Error:</b> Cannot install - please verify you put this in the same place as SMF\'s index.php.');
 
 $hooks = array(
-	'integrate_admin_include' => '$sourcedir/moderateAdmin.php',
+	'integrate_pre_include' => '$sourcedir/moderateAdmin.php',
 	'integrate_general_mod_settings' => 'mA_settings',
 	'integrate_load_permissions' => 'mA_permissions',
 );
