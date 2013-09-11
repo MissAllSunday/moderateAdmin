@@ -14,7 +14,7 @@ $txt['mA_main'] = 'moderate admin';
 
 // Permissions
 $txt['cannot_moderateAdmin'] = 'I\'m sorry, you are not allowed to moderate Admin\'s message.';
-$txt['permissionname_board_moderateAdmin'] = 'Moderate Admin\'s messages';
+$txt['permissionname_moderateAdmin'] = 'Moderate Admin\'s messages';
 
 // Settings
 $txt['mA_adminOptions'] = 'Who are going to be protected by the moderate permission?';

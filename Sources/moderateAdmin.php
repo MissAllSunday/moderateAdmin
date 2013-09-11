@@ -13,6 +13,8 @@ if (!defined('SMF'))
 
 function mA_permissions(&$permissionGroups, &$permissionList)
 {
+	loadLanguage('moderateAdmin');
+
 	$permissionList['board']['moderateAdmin'] = array(false, 'general_board', 'moderate');
 }
 
@@ -23,14 +25,14 @@ function mA_settings(&$config_vars)
 	loadLanguage('moderateAdmin');
 
 	$config_vars[] = $txt['mA_main'];
-	array( 'select', 'mA_adminOptions',
+	$config_vars[] = array( 'select', 'mA_adminOptions',
 			array(
 				'single' => $txt['mA_singleAdmin'],
 				'primary' => $txt['mA_primaryAdmin'],
 				'all' => $txt['mA_allAdmins'],
 			),
 			'subtext' => $txt['mA_adminOptions_sub']
-		),
+		);
 	$config_vars[] = array('int', 'mA_uniqueAdmin', 'subtext' => $txt['mA_uniqueAdmin_sub']);
 	$config_vars[] = '';
 
