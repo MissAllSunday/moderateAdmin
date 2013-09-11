@@ -40,8 +40,19 @@ function isAdmin($userID)
 {
 	global $smcfunc, $modSettings;
 
-	$queryWhere = 'id_group = {int:userID}';
+	$queryWhere = '';
 
-	if (empty($modSettings['mA_onlySuperAdmin']))
-		$queryWhere .= 'OR ';
+	if (!empty($modSettings['mA_adminOptions']))
+		switch ($modSettings['mA_adminOptions'])
+		{
+			case 'single':
+				$queryWhere .= '';
+				break;
+			case'primary':
+				$queryWhere .= '';
+				break;
+			case 'all':
+				$queryWhere .= '';
+				break;
+		}
 }
