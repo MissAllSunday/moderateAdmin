@@ -22,5 +22,5 @@ $txt['mA_adminOptions_sub'] = 'If you select the "single admin" option make sure
 $txt['mA_singleAdmin'] = 'A single admin';
 $txt['mA_primaryAdmin'] = 'All users who have an admin account as primary group.';
 $txt['mA_allAdmins'] = 'All admins, including users who have an admin group as secondary.';
-$txt['ma_uniqueAdmin'] = 'Set the user ID for the single admin who will be protected by the moderate permission.';
-$txt['ma_uniqueAdmin_sub'] = 'Must be a valid user ID, if its not set the mod will use the ID 1.';
+$txt['mA_uniqueAdmin'] = 'Set the user ID for the single admin who will be protected by the moderate permission.';
+$txt['mA_uniqueAdmin_sub'] = 'Must be a valid user ID, if its not set the mod will use the ID 1.';
