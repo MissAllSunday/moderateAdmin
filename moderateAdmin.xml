@@ -10,6 +10,55 @@
 			<search position="replace"><![CDATA[]]></search>
 			<add><![CDATA[]]></add>
 		</operation>
+		<operation>
+			<search position="replace"><![CDATA[]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+	</file>
+
+	<file name="$sourcedir/Post.php">
+		<operation>
+			<search position="replace"><![CDATA[// If the user doesn't have permission to edit the post in this topic, redirect them.
+			if ((empty($id_member_poster) || $id_member_poster != $user_info['id'] || !allowedTo('modify_own')) && !allowedTo('modify_any'))
+			{
+				require_once($sourcedir . '/Calendar.php');
+				return CalendarPost();
+			}]]></search>
+			<add><![CDATA[// moderateAdmin mod
+			require_once($sourcedir . '/moderateAdmin.php');
+			if (mA_isAdmin($id_member_poster))
+				isAllowedTo('moderateAdmin');
+
+			else
+			{
+				// If the user doesn't have permission to edit the post in this topic, redirect them.
+				if ((empty($id_member_poster) || $id_member_poster != $user_info['id'] || !allowedTo('modify_own')) && !allowedTo('modify_any'))
+				{
+					require_once($sourcedir . '/Calendar.php');
+					return CalendarPost();
+				}
+			}]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
 	</file>
 
 </modification>

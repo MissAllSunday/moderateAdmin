@@ -36,7 +36,7 @@ function mA_settings(&$config_vars)
 
 }
 
-function isAdmin($userID)
+function mA_isAdmin($userID)
 {
 	global $smcfunc, $modSettings, $user_info;
 
