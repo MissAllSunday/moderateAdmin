@@ -40,7 +40,7 @@ function mA_settings(&$config_vars)
 
 function mA_isAdmin($userID)
 {
-	global $smcfunc, $modSettings, $user_info;
+	global $smcFunc, $modSettings, $user_info;
 
 	$queryWhere = '';
 	$idGroup = 1;
@@ -62,7 +62,7 @@ function mA_isAdmin($userID)
 		}
 
 	// Get all possible admins
-	$result = $this->_smcFunc['db_query']('', '
+	$result = $smcFunc['db_query']('', '
 		SELECT id_member
 		FROM {db_prefix}members
 		WHERE '. ($queryWhere),
@@ -76,5 +76,5 @@ function mA_isAdmin($userID)
 
 	$smcFunc['db_free_result']($result);
 
-	return in_array($userID, $admins);
+	return in_array($userID, $Admins);
 }

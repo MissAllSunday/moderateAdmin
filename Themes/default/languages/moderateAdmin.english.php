@@ -13,7 +13,7 @@ global $txt;
 $txt['mA_main'] = 'moderate admin';
 
 // Permissions
-$txt['cannot_moderateAdmin'] = 'I\'m sorry, you are not allowed to moderate Admin\'s message.';
+$txt['cannot_moderateAdmin'] = 'I\'m sorry, you are not allowed to moderate Admin\'s messages.';
 $txt['permissionname_moderateAdmin'] = 'Moderate Admin\'s messages';
 
 // Settings
