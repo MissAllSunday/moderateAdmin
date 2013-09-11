@@ -26,26 +26,17 @@
 
 	<file name="$sourcedir/Post.php">
 		<operation>
-			<search position="replace"><![CDATA[// If the user doesn't have permission to edit the post in this topic, redirect them.
-			if ((empty($id_member_poster) || $id_member_poster != $user_info['id'] || !allowedTo('modify_own')) && !allowedTo('modify_any'))
-			{
-				require_once($sourcedir . '/Calendar.php');
-				return CalendarPost();
-			}]]></search>
-			<add><![CDATA[// moderateAdmin mod
-			require_once($sourcedir . '/moderateAdmin.php');
-			if (mA_isAdmin($id_member_poster))
-				isAllowedTo('moderateAdmin');
+			<search position="replace"><![CDATA[if (!empty($topic_info['locked']) && !allowedTo('moderate_board'))
+			fatal_lang_error('topic_locked', false);
 
-			else
-			{
-				// If the user doesn't have permission to edit the post in this topic, redirect them.
-				if ((empty($id_member_poster) || $id_member_poster != $user_info['id'] || !allowedTo('modify_own')) && !allowedTo('modify_any'))
-				{
-					require_once($sourcedir . '/Calendar.php');
-					return CalendarPost();
-				}
-			}]]></add>
+		if (isset($_POST['lock']))]]></search>
+			<add><![CDATA[if (mA_isAdmin($row['id_member']))
+			isAllowedTo('moderateAdmin');
+
+		if (!empty($topic_info['locked']) && !allowedTo('moderate_board'))
+			fatal_lang_error('topic_locked', false);
+
+		if (isset($_POST['lock']))]]></add>
 		</operation>
 		<operation>
 			<search position="replace"><![CDATA[]]></search>

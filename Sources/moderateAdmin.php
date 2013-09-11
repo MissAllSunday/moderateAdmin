@@ -42,6 +42,9 @@ function mA_isAdmin($userID)
 {
 	global $smcFunc, $modSettings, $user_info;
 
+	// Load the text strings, we're going to use the error ones
+	loadLanguage('moderateAdmin');
+
 	$queryWhere = '';
 	$idGroup = 1;
 	$admins = array();
