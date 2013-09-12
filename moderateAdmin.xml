@@ -108,4 +108,19 @@
 		</operation>
 	</file>
 
+	<file name="$sourcedir/MoveTopic.php">
+		<operation>
+			<search position="replace"><![CDATA[// Can they see it - if not approved?
+	if ($modSettings['postmod_active'] && !$context['is_approved'])
+		isAllowedTo('approve_posts');]]></search>
+			<add><![CDATA[// Can they see it - if not approved?
+	if ($modSettings['postmod_active'] && !$context['is_approved'])
+		isAllowedTo('approve_posts');
+
+	// moderateAdmin mod
+	if (mA_isAdmin($id_member_started))
+		isAllowedTo('moderateAdmin');]]></add>
+		</operation>
+	</file>
+
 </modification>
