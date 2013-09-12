@@ -55,8 +55,15 @@
 			// You're have no permission to lock this topic.]]></add>
 		</operation>
 		<operation>
-			<search position="replace"><![CDATA[]]></search>
-			<add><![CDATA[]]></add>
+			<search position="replace"><![CDATA[// Change the sticky status of this topic?
+		if (isset($_POST['sticky']) && (!allowedTo('make_sticky') || $_POST['sticky'] == $topic_info['is_sticky']))
+			unset($_POST['sticky']);]]></search>
+			<add><![CDATA[// Change the sticky status of this topic?
+		if (isset($_POST['sticky']) && (!allowedTo('make_sticky') || $_POST['sticky'] == $topic_info['is_sticky']))
+			unset($_POST['sticky']);
+
+		elseif (mA_isAdmin($row['id_member']))
+			isAllowedTo('moderateAdmin');]]></add>
 		</operation>
 		<operation>
 			<search position="replace"><![CDATA[]]></search>
