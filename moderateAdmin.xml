@@ -23,18 +23,6 @@
 		}
 	}]]></add>
 		</operation>
-		<operation>
-			<search position="replace"><![CDATA[]]></search>
-			<add><![CDATA[]]></add>
-		</operation>
-		<operation>
-			<search position="replace"><![CDATA[]]></search>
-			<add><![CDATA[]]></add>
-		</operation>
-		<operation>
-			<search position="replace"><![CDATA[]]></search>
-			<add><![CDATA[]]></add>
-		</operation>
 	</file>
 
 	<file name="$sourcedir/Post.php">
@@ -89,6 +77,21 @@
 		<operation>
 			<search position="replace"><![CDATA[]]></search>
 			<add><![CDATA[]]></add>
+		</operation>
+	</file>
+
+	<file name="$sourcedir/RemoveTopic.php">
+		<operation>
+			<search position="replace"><![CDATA[// Verify they can see this!
+	if ($modSettings['postmod_active'] && !$approved && !empty($poster) && $poster != $user_info['id'])
+		isAllowedTo('approve_posts');]]></search>
+			<add><![CDATA[// Verify they can see this!
+	if ($modSettings['postmod_active'] && !$approved && !empty($poster) && $poster != $user_info['id'])
+		isAllowedTo('approve_posts');
+
+	// moderateAdmin mod
+	if (mA_isAdmin($poster))
+		isAllowedTo('moderateAdmin');]]></add>
 		</operation>
 	</file>
 
