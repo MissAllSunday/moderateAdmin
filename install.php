@@ -18,6 +18,7 @@ $hooks = array(
 	'integrate_pre_include' => '$sourcedir/moderateAdmin.php',
 	'integrate_general_mod_settings' => 'mA_settings',
 	'integrate_load_permissions' => 'mA_permissions',
+	'integrate_mod_buttons' => 'mA_displayButtons',
 );
 
 $call = 'add_integration_function';
