@@ -81,3 +81,12 @@ function mA_isAdmin($userID)
 
 	return in_array($userID, $Admins);
 }
+
+function mA_displayButtons(&$mod_buttons)
+{
+	global $context;
+
+	// This is easy, we unset the var if the topic starter is an admin...
+	if (!empty($context['topic_starter_id']) && ma_isAdmin($context['topic_starter_id']))
+		unset($mod_buttons['move'], $mod_buttons['delete'], $mod_buttons['lock'], $mod_buttons['sticky'], $mod_buttons['merge']);
+}
