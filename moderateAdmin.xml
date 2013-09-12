@@ -95,4 +95,17 @@
 		</operation>
 	</file>
 
+	<file name="$sourcedir/RemoveTopic.php">
+		<operation>
+			<search position="replace"><![CDATA[// Can you do this?
+	if ($context['is_edit'] && !allowedTo('poll_edit_any'))]]></search>
+			<add><![CDATA[// moderateAdmin mod
+	if (mA_isAdmin($pollinfo['id_member_started']r))
+		isAllowedTo('moderateAdmin');
+
+	// Can you do this?
+	if ($context['is_edit'] && !allowedTo('poll_edit_any'))]]></add>
+		</operation>
+	</file>
+
 </modification>
