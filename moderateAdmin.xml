@@ -47,6 +47,22 @@
 		// Sorry, multiple polls aren't allowed... yet.  You should stop giving me ideas :P.]]></add>
 		</operation>
 		<operation>
+			<search position="replace"><![CDATA[// You're have no permission to lock this topic.]]></search>
+			<add><![CDATA[// moderateAdmin mod
+			elseif (mA_isAdmin($topic_info['id_member_started']))
+			isAllowedTo('moderateAdmin');
+
+			// You're have no permission to lock this topic.]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation>
 			<search position="replace"><![CDATA[]]></search>
 			<add><![CDATA[]]></add>
 		</operation>
