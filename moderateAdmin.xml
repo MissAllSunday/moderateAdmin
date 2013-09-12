@@ -39,8 +39,12 @@
 		if (isset($_POST['lock']))]]></add>
 		</operation>
 		<operation>
-			<search position="replace"><![CDATA[]]></search>
-			<add><![CDATA[]]></add>
+			<search position="replace"><![CDATA[// Sorry, multiple polls aren't allowed... yet.  You should stop giving me ideas :P.]]></search>
+			<add><![CDATA[// moderateAdmin mod
+		if ($topic_info['locked'] != 0 && mA_isAdmin($topic_info['id_member_started']))
+			isAllowedTo('moderateAdmin');
+
+		// Sorry, multiple polls aren't allowed... yet.  You should stop giving me ideas :P.]]></add>
 		</operation>
 		<operation>
 			<search position="replace"><![CDATA[]]></search>
