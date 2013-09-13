@@ -15,7 +15,6 @@
 
 	<uninstall for="2.0 - 2.0.99">
 		<code>remove.php</code>
-		<database>install.php</database>
 		<modification reverse="true">moderateAdmin.xml</modification>
 		<remove-file name="$languagedir/moderateAdmin.english.php" />
 		<remove-dir name="$sourcedir/moderateAdmin.php" />
