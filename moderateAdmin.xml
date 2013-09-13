@@ -66,18 +66,6 @@
 		elseif (mA_isAdmin($row['id_member']))
 			isAllowedTo('moderateAdmin');]]></add>
 		</operation>
-		<operation>
-			<search position="replace"><![CDATA[]]></search>
-			<add><![CDATA[]]></add>
-		</operation>
-		<operation>
-			<search position="replace"><![CDATA[]]></search>
-			<add><![CDATA[]]></add>
-		</operation>
-		<operation>
-			<search position="replace"><![CDATA[]]></search>
-			<add><![CDATA[]]></add>
-		</operation>
 	</file>
 
 	<file name="$sourcedir/RemoveTopic.php">
@@ -95,7 +83,7 @@
 		</operation>
 	</file>
 
-	<file name="$sourcedir/RemoveTopic.php">
+	<file name="$sourcedir/Poll.php">
 		<operation>
 			<search position="replace"><![CDATA[// Can you do this?
 	if ($context['is_edit'] && !allowedTo('poll_edit_any'))]]></search>
