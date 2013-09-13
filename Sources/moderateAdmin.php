@@ -47,7 +47,6 @@ function mA_isAdmin($userID)
 
 	$queryWhere = '';
 	$idGroup = 1;
-	$admins = array();
 
 	if (!empty($modSettings['mA_adminOptions']))
 		switch ($modSettings['mA_adminOptions'])
@@ -64,20 +63,29 @@ function mA_isAdmin($userID)
 				break;
 		}
 
-	// Get all possible admins
-	$result = $smcFunc['db_query']('', '
-		SELECT id_member
-		FROM {db_prefix}members
-		WHERE '. ($queryWhere),
-		array(
-			'idGroup' => $idGroup
-		)
-	);
+	// Use the cache
+	if (($Admins = cache_get_data('mA-Admins-List', 360)) == null)
+	{
+		// Set it as empty
+		$Admins = array();
 
-	while ($row = $smcFunc['db_fetch_assoc']($result))
-		$Admins[] = $row['id_member'];
+		// Get all possible admins
+		$result = $smcFunc['db_query']('', '
+			SELECT id_member
+			FROM {db_prefix}members
+			WHERE '. ($queryWhere),
+			array(
+				'idGroup' => $idGroup
+			)
+		);
 
-	$smcFunc['db_free_result']($result);
+		while ($row = $smcFunc['db_fetch_assoc']($result))
+			$Admins[] = $row['id_member'];
+
+		$smcFunc['db_free_result']($result);
+
+		cache_put_data('mA-Admins-List', $Admins, 360);
+	}
 
 	return in_array($userID, $Admins);
 }
