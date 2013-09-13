@@ -7,8 +7,7 @@
 	<type>modification</type>
 
 	<install for="2.0 - 2.0.99">
-		<database>install.php</database>
-		<code>hooks.php</code>
+		<code>install.php</code>
 		<modification>moderateAdmin.xml</modification>
 		<require-dir name="Themes" destination="$boarddir">Source files</require-dir>
 		<require-dir name="Sources" destination="$boarddir">Source files</require-dir>
@@ -18,6 +17,8 @@
 		<code>remove.php</code>
 		<database>install.php</database>
 		<modification reverse="true">moderateAdmin.xml</modification>
+		<remove-file name="$languagedir/moderateAdmin.english.php" />
+		<remove-dir name="$sourcedir/moderateAdmin.php" />
 	</uninstall>
 
 </package-info>
