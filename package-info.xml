@@ -11,6 +11,7 @@
 		<modification>moderateAdmin.xml</modification>
 		<require-dir name="Themes" destination="$boarddir">Source files</require-dir>
 		<require-dir name="Sources" destination="$boarddir">Source files</require-dir>
+		<redirect url="$scripturl?action=admin;admin;area=modsettings" timeout="3000"></redirect>
 	</install>
 
 	<uninstall for="2.0 - 2.0.99">
