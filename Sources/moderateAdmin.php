@@ -52,22 +52,22 @@ function mA_isAdmin($userID)
 	$queryWhere = '';
 	$idGroup = 1;
 
-	if (!empty($modSettings['mA_adminOptions']))
-		switch ($modSettings['mA_adminOptions'])
-		{
-			// Been single makes things soo much easier :P
-			case 'single':
-			case'primary':
-				$queryWhere .= 'id_group = {int:idGroup}';
-				break;
-			case 'all':
-				$queryWhere .= 'id_group = {int:idGroup} OR FIND_IN_SET({int:idGroup}, additional_groups)';
-				break;
-		}
-
 	// Use the cache
 	if (($Admins = cache_get_data('mA-Admins-List', 360)) == null)
 	{
+		if (!empty($modSettings['mA_adminOptions']))
+			switch ($modSettings['mA_adminOptions'])
+			{
+				// Been single makes things soo much easier :P
+				case 'single':
+				case'primary':
+					$queryWhere .= 'id_group = {int:idGroup}';
+					break;
+				case 'all':
+					$queryWhere .= 'id_group = {int:idGroup} OR FIND_IN_SET({int:idGroup}, additional_groups)';
+					break;
+			}
+
 		// Set it as empty
 		$Admins = array();
 
