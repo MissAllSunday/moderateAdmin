@@ -34,6 +34,10 @@ function mA_settings(&$config_vars)
 			'subtext' => $txt['mA_adminOptions_sub']
 		);
 	$config_vars[] = array('int', 'mA_uniqueAdmin', 'subtext' => $txt['mA_uniqueAdmin_sub']);
+	$config_vars[] = $txt['mA_coverOptions'];
+	$config_vars[] = array('check', 'mA_edit', 'subtext' => $txt['mA_edit_sub']);
+	$config_vars[] = array('check', 'mA_delete', 'subtext' => $txt['mA_delete_sub']);
+	$config_vars[] = array('check', 'mA_move', 'subtext' => $txt['mA_move_sub']);
 	$config_vars[] = '';
 
 }
