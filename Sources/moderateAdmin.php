@@ -49,11 +49,15 @@ function mA_isAdmin($userID)
 {
 	global $smcFunc, $modSettings, $user_info;
 
-	// Load the text strings, we're going to use the error ones
+	/**
+	* Load the text strings, we're going to use the error ones
+	* Disclaimer, I don't actually use any text string here... I'm only loading the language file here.
+	* This is to avoid having to load the language file on every call to this function, it saves some code lines, yes I'm lazy... 
+	*/
 	loadLanguage('moderateAdmin');
 
 	$queryWhere = '';
-	$idGroup = 1;
+	$idGroup = 1; // @todo make this an admin setting and allow more admin groups
 
 	// Use the cache
 	if (($Admins = cache_get_data('mA-Admins-List', 360)) == null)
