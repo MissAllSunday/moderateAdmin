@@ -57,8 +57,6 @@ function mA_isAdmin($userID)
 		{
 			// Been single makes things soo much easier :P
 			case 'single':
-				return $user_info['id'] == $userID;
-				break;
 			case'primary':
 				$queryWhere .= 'id_group = {int:idGroup}';
 				break;
