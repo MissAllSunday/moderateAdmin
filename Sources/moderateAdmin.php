@@ -58,12 +58,12 @@ function mA_isAdmin($userID)
 		if (!empty($modSettings['mA_adminOptions']))
 			switch ($modSettings['mA_adminOptions'])
 			{
-				// Been single makes things soo much easier :P
-				case 'single':
 				case'primary':
 					$queryWhere .= 'id_group = {int:idGroup}';
 					break;
 				case 'all':
+				// Been single makes things soo much easier :P
+				case 'single':
 					$queryWhere .= 'id_group = {int:idGroup} OR FIND_IN_SET({int:idGroup}, additional_groups)';
 					break;
 			}
