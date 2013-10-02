@@ -35,15 +35,6 @@ function mA_settings(&$config_vars)
 		);
 	$config_vars[] = array('int', 'mA_uniqueAdmin', 'subtext' => $txt['mA_uniqueAdmin_sub']);
 	$config_vars[] = '';
-	$config_vars[] = $txt['mA_coverOptions'];
-	$config_vars[] = array('check', 'mA_edit');
-	$config_vars[] = array('check', 'mA_delete');
-	$config_vars[] = array('check', 'mA_sticky');
-	$config_vars[] = array('check', 'mA_move');
-	$config_vars[] = array('check', 'mA_lock');
-	$config_vars[] = array('check', 'mA_merge');
-	$config_vars[] = '';
-
 }
 
 function mA_isAdmin($userID)
@@ -55,7 +46,7 @@ function mA_isAdmin($userID)
 
 	/**
 	* Load the text strings, we're going to use the error ones
-	* Disclaimer, I don't actually use any text string here... I'm only loading the language file here.
+	* Disclaimer, I don't actually use any text string here... I'm only loading the language file.
 	* This is to avoid having to load the language file on every call to this function, it saves some code lines, yes I'm lazy...
 	*/
 	loadLanguage('moderateAdmin');
@@ -112,12 +103,7 @@ function mA_displayButtons(&$mod_buttons)
 {
 	global $context, $modSettings;
 
-	// Set all possible actions
-	$actions = array('delete', 'sticky', 'move', 'lock', 'merge');
-
 	// This is easy, we unset the var if the topic starter is an admin...
 	if (!empty($context['topic_starter_id']) && ma_isAdmin($context['topic_starter_id']))
-		foreach ($actions as $action)
-			if (!empty($modSettings['mA_'. $action]))
-				unset($mod_buttons[$action]);
+		unset($mod_buttons['delete'], $mod_buttons['lock'], $mod_buttons['sticky'], $mod_buttons['merge']);
 }
