@@ -18,8 +18,11 @@
 		// This current user is an admin, that means you can't do anything unless you have the special permission to do so...
 		if (!allowedTo('moderateAdmin'))
 		{
-			$output['can_modify'] = false;
-			$output['can_remove'] = false;
+			if (!empty($modSettings['mA_edit']))
+				$output['can_modify'] = false;
+
+			if (!empty($modSettings['mA_delete']))
+				$output['can_remove'] = false;
 		}
 	}]]></add>
 		</operation>

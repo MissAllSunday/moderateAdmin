@@ -81,6 +81,9 @@ function mA_isAdmin($userID)
 					break;
 			}
 
+		else
+			return false;
+
 		// Set it as empty
 		$admins = array();
 
