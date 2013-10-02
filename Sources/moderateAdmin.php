@@ -52,7 +52,7 @@ function mA_isAdmin($userID)
 	/**
 	* Load the text strings, we're going to use the error ones
 	* Disclaimer, I don't actually use any text string here... I'm only loading the language file here.
-	* This is to avoid having to load the language file on every call to this function, it saves some code lines, yes I'm lazy... 
+	* This is to avoid having to load the language file on every call to this function, it saves some code lines, yes I'm lazy...
 	*/
 	loadLanguage('moderateAdmin');
 
@@ -69,7 +69,6 @@ function mA_isAdmin($userID)
 					$queryWhere .= 'id_group = {int:idGroup}';
 					break;
 				case 'all':
-				// Been single makes things soo much easier :P
 				case 'single':
 					$queryWhere .= 'id_group = {int:idGroup} OR FIND_IN_SET({int:idGroup}, additional_groups)';
 					break;
@@ -101,9 +100,14 @@ function mA_isAdmin($userID)
 
 function mA_displayButtons(&$mod_buttons)
 {
-	global $context;
+	global $context, $modSettings;
+
+	// Set all possible actions
+	$actions = array('delete', 'sticky', 'move', 'lock', 'merge');
 
 	// This is easy, we unset the var if the topic starter is an admin...
 	if (!empty($context['topic_starter_id']) && ma_isAdmin($context['topic_starter_id']))
-		unset($mod_buttons['move'], $mod_buttons['delete'], $mod_buttons['lock'], $mod_buttons['sticky'], $mod_buttons['merge']);
+		foreach ($actions as $action)
+			if (!empty($modSettings['mA_'. $action]))
+				unset($mod_buttons[$action]);
 }
