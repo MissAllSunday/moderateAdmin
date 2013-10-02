@@ -62,19 +62,7 @@ function mA_isAdmin($userID)
 	// Use the cache
 	if (($admins = cache_get_data('mA-Admins-List', 360)) == null)
 	{
-		if (!empty($modSettings['mA_adminOptions']))
-			switch ($modSettings['mA_adminOptions'])
-			{
-				case'primary':
-					$queryWhere .= 'id_group = {int:idGroup}';
-					break;
-				case 'all':
-					$queryWhere .= 'id_group = {int:idGroup} OR FIND_IN_SET({int:idGroup}, additional_groups)';
-					break;
-			}
-
-		else
-			return false;
+		$queryWhere = $modSettings['mA_adminOptions'] == 'primary' ? 'id_group = {int:idGroup}' : 'id_group = {int:idGroup} OR FIND_IN_SET({int:idGroup}, additional_groups)';
 
 		// Set it as empty
 		$admins = array();
