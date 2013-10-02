@@ -50,6 +50,9 @@ function mA_isAdmin($userID)
 {
 	global $smcFunc, $modSettings, $user_info;
 
+	if (empty($userID))
+		return false;
+
 	/**
 	* Load the text strings, we're going to use the error ones
 	* Disclaimer, I don't actually use any text string here... I'm only loading the language file here.
@@ -59,6 +62,7 @@ function mA_isAdmin($userID)
 
 	$queryWhere = '';
 	$idGroup = 1; // @todo make this an admin setting and allow more admin groups
+	$ma_uniqueAdmin = !empty($modSettings['mA_uniqueAdmin']) ? $modSettings['mA_uniqueAdmin'] : 1;
 
 	// Use the cache
 	if (($admins = cache_get_data('mA-Admins-List', 360)) == null)
@@ -67,7 +71,7 @@ function mA_isAdmin($userID)
 			switch ($modSettings['mA_adminOptions'])
 			{
 				case 'single':
-					return $modSettings['mA_uniqueAdmin'] == $userID;
+					return $ma_uniqueAdmin == $userID;
 					break;
 				case'primary':
 					$queryWhere .= 'id_group = {int:idGroup}';
