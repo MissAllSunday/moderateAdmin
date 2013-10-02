@@ -41,7 +41,7 @@ function mA_isAdmin($userID)
 {
 	global $smcFunc, $modSettings, $user_info;
 
-	if (empty($userID))
+	if (empty($userID) || empty($modSettings['mA_adminOptions']))
 		return false;
 
 	/**
@@ -55,15 +55,16 @@ function mA_isAdmin($userID)
 	$idGroup = 1; // @todo make this an admin setting and allow more admin groups
 	$ma_uniqueAdmin = !empty($modSettings['mA_uniqueAdmin']) ? $modSettings['mA_uniqueAdmin'] : 1;
 
+	// Avoid doing a query if we only need to check for a single user
+	if ($modSettings['mA_adminOptions'] == 'single')
+		return $ma_uniqueAdmin == $userID;
+
 	// Use the cache
 	if (($admins = cache_get_data('mA-Admins-List', 360)) == null)
 	{
 		if (!empty($modSettings['mA_adminOptions']))
 			switch ($modSettings['mA_adminOptions'])
 			{
-				case 'single':
-					return $ma_uniqueAdmin == $userID;
-					break;
 				case'primary':
 					$queryWhere .= 'id_group = {int:idGroup}';
 					break;

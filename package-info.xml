@@ -10,7 +10,7 @@
 		<code>install.php</code>
 		<modification>moderateAdmin.xml</modification>
 		<require-dir name="Themes" destination="$boarddir">Source files</require-dir>
-		<require-file name="moderateAdmin.php" destination="$sourcedir">The file that handles everything</require-file>
+		<require-file name="Sources/moderateAdmin.php" destination="$sourcedir">The file that handles everything</require-file>
 		<redirect url="$scripturl?action=admin;admin;area=modsettings" timeout="3000"></redirect>
 	</install>
 
