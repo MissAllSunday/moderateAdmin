@@ -34,6 +34,7 @@ function mA_settings(&$config_vars)
 			'subtext' => $txt['mA_adminOptions_sub']
 		);
 	$config_vars[] = array('int', 'mA_uniqueAdmin', 'subtext' => $txt['mA_uniqueAdmin_sub']);
+	$config_vars[] = '';
 	$config_vars[] = $txt['mA_coverOptions'];
 	$config_vars[] = array('check', 'mA_edit');
 	$config_vars[] = array('check', 'mA_delete');
@@ -65,11 +66,13 @@ function mA_isAdmin($userID)
 		if (!empty($modSettings['mA_adminOptions']))
 			switch ($modSettings['mA_adminOptions'])
 			{
+				case 'single':
+					return $modSettings['mA_uniqueAdmin'] == $userID;
+					break;
 				case'primary':
 					$queryWhere .= 'id_group = {int:idGroup}';
 					break;
 				case 'all':
-				case 'single':
 					$queryWhere .= 'id_group = {int:idGroup} OR FIND_IN_SET({int:idGroup}, additional_groups)';
 					break;
 			}
