@@ -60,7 +60,7 @@ function mA_isAdmin($userID)
 	$idGroup = 1; // @todo make this an admin setting and allow more admin groups
 
 	// Use the cache
-	if (($Admins = cache_get_data('mA-Admins-List', 360)) == null)
+	if (($admins = cache_get_data('mA-Admins-List', 360)) == null)
 	{
 		if (!empty($modSettings['mA_adminOptions']))
 			switch ($modSettings['mA_adminOptions'])
@@ -75,7 +75,7 @@ function mA_isAdmin($userID)
 			}
 
 		// Set it as empty
-		$Admins = array();
+		$admins = array();
 
 		// Get all possible admins
 		$result = $smcFunc['db_query']('', '
@@ -88,14 +88,14 @@ function mA_isAdmin($userID)
 		);
 
 		while ($row = $smcFunc['db_fetch_assoc']($result))
-			$Admins[] = $row['id_member'];
+			$admins[] = $row['id_member'];
 
 		$smcFunc['db_free_result']($result);
 
-		cache_put_data('mA-Admins-List', $Admins, 360);
+		cache_put_data('mA-Admins-List', $admins, 360);
 	}
 
-	return in_array($userID, $Admins);
+	return in_array($userID, $admins);
 }
 
 function mA_displayButtons(&$mod_buttons)
