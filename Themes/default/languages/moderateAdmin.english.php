@@ -24,3 +24,6 @@ $txt['mA_primaryAdmin'] = 'All users who have an admin account as primary group.
 $txt['mA_allAdmins'] = 'All admins, including users who have an admin group as secondary.';
 $txt['mA_uniqueAdmin'] = 'Set the user ID for the single admin who will be protected by the moderate permission.';
 $txt['mA_uniqueAdmin_sub'] = 'Must be a valid user ID, if its not set the mod will use the ID 1.';
+
+// Error strings
+$txt['mA_error_log'] = 'User %1$s has tried to %2$s the following message: %3$s';
