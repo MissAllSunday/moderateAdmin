@@ -31,8 +31,14 @@
 			fatal_lang_error('topic_locked', false);
 
 		if (isset($_POST['lock']))]]></search>
-			<add><![CDATA[if (mA_isAdmin($row['id_member']))
-			isAllowedTo('moderateAdmin');
+			<add><![CDATA[
+		// moderateAdmin mod
+		if (mA_isAdmin($row['id_member']))
+			if (!allowedTo('moderateAdmin'))
+			{
+				log_error(sprintf($txt['mA_error_log'], $user_info['name'], 'modify', 'message'), 'user');
+				fatal_lang_error('cannot_moderateAdmin', false);
+			}
 
 		if (!empty($topic_info['locked']) && !allowedTo('moderate_board'))
 			fatal_lang_error('topic_locked', false);
@@ -43,7 +49,11 @@
 			<search position="replace"><![CDATA[// Sorry, multiple polls aren't allowed... yet.  You should stop giving me ideas :P.]]></search>
 			<add><![CDATA[// moderateAdmin mod
 		if ($topic_info['locked'] != 0 && mA_isAdmin($topic_info['id_member_started']))
-			isAllowedTo('moderateAdmin');
+			if (!allowedTo('moderateAdmin'))
+			{
+				log_error(sprintf($txt['mA_error_log'], $user_info['name'], 'replied', 'topic'), 'user');
+				fatal_lang_error('cannot_moderateAdmin', false);
+			}
 
 		// Sorry, multiple polls aren't allowed... yet.  You should stop giving me ideas :P.]]></add>
 		</operation>
@@ -51,7 +61,11 @@
 			<search position="replace"><![CDATA[// You're have no permission to lock this topic.]]></search>
 			<add><![CDATA[// moderateAdmin mod
 			elseif (mA_isAdmin($topic_info['id_member_started']))
-			isAllowedTo('moderateAdmin');
+				if (!allowedTo('moderateAdmin'))
+				{
+					log_error(sprintf($txt['mA_error_log'], $user_info['name'], 'lock', 'topic'), 'user');
+					fatal_lang_error('cannot_moderateAdmin', false);
+				}
 
 			// You're have no permission to lock this topic.]]></add>
 		</operation>
@@ -64,7 +78,11 @@
 			unset($_POST['sticky']);
 
 		elseif (mA_isAdmin($row['id_member']))
-			isAllowedTo('moderateAdmin');]]></add>
+			if (!allowedTo('moderateAdmin'))
+			{
+				log_error(sprintf($txt['mA_error_log'], $user_info['name'], '(un)sticky', 'topic'), 'user');
+				fatal_lang_error('cannot_moderateAdmin', false);
+			}]]></add>
 		</operation>
 	</file>
 
@@ -79,7 +97,11 @@
 
 	// moderateAdmin mod
 	if (mA_isAdmin($poster))
-		isAllowedTo('moderateAdmin');]]></add>
+		if (!allowedTo('moderateAdmin'))
+		{
+			log_error(sprintf($txt['mA_error_log'], $user_info['name'], 'remove', 'topic'), 'user');
+			fatal_lang_error('cannot_moderateAdmin', false);
+		}]]></add>
 		</operation>
 	</file>
 
@@ -89,7 +111,11 @@
 	if ($context['is_edit'] && !allowedTo('poll_edit_any'))]]></search>
 			<add><![CDATA[// moderateAdmin mod
 	if (mA_isAdmin($pollinfo['id_member_started']))
-		isAllowedTo('moderateAdmin');
+		if (!allowedTo('moderateAdmin'))
+		{
+			log_error(sprintf($txt['mA_error_log'], $user_info['name'], 'edit', 'poll'), 'user');
+			fatal_lang_error('cannot_moderateAdmin', false);
+		}
 
 	// Can you do this?
 	if ($context['is_edit'] && !allowedTo('poll_edit_any'))]]></add>
@@ -107,7 +133,11 @@
 
 	// moderateAdmin mod
 	if (mA_isAdmin($id_member_started))
-		isAllowedTo('moderateAdmin');]]></add>
+		if (!allowedTo('moderateAdmin'))
+		{
+			log_error(sprintf($txt['mA_error_log'], $user_info['name'], 'move', 'topic'), 'user');
+			fatal_lang_error('cannot_moderateAdmin', false);
+		}]]></add>
 		</operation>
 	</file>
 

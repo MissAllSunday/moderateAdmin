@@ -8,7 +8,7 @@
  * @license http://www.mozilla.org/MPL/ MPL 2.0
  */
 
-global $txt;
+global $txt, $scripturl;
 
 $txt['mA_main'] = 'moderate admin';
 
@@ -26,4 +26,4 @@ $txt['mA_uniqueAdmin'] = 'Set the user ID for the single admin who will be prote
 $txt['mA_uniqueAdmin_sub'] = 'Must be a valid user ID, if its not set the mod will use the ID 1.';
 
 // Error strings
-$txt['mA_error_log'] = 'User %1$s has tried to %2$s the following message: %3$s';
+$txt['mA_error_log'] = 'User %1$s has tried to %2$s a %3$s';
